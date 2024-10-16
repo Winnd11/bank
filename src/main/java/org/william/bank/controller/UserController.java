@@ -51,6 +51,6 @@ public class UserController {
 	
 	@PostMapping(value = "/insert")
 	public void insertUser(@RequestBody User user) {
-		
+		userService.insertUser(user);
 	}
 }

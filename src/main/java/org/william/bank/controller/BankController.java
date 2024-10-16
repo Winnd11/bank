@@ -8,42 +8,51 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.william.bank.entites.Bank;
 import org.william.bank.repositories.BankRepository;
+import org.william.bank.service.BankService;
 
 @RestController
 @RequestMapping(value = "/bank")
 public class BankController {
 	
 	@Autowired
-	BankRepository bankRepository;
+	BankService bankService;
 	
 	@GetMapping(value = "/getbank")
-	public List<Bank> getAll() {
-		return bankRepository.getAllAgency();
+	@ResponseBody
+	public ResponseEntity<List<Bank>> getAll() {
+		List<Bank> r = bankService.getAll();
+		
+		return ResponseEntity.ok(r);
 	}
 	
 	@GetMapping(value = "/byname/{agency}")
+	@ResponseBody
 	public ResponseEntity<Bank> getByName(@PathVariable String agency) {
-		Optional<Bank> result = Optional.ofNullable(bankRepository.getByName(agency));
+		ResponseEntity<Bank> result = bankService.getName(agency);
 		
-		if (result.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		} else {
-			return ResponseEntity.ok(bankRepository.getByName(agency));
-		}
+		return result;
+		
 	}
 	
 	@GetMapping(value = "/byid/{id}")
+	@ResponseBody
 	public ResponseEntity<Bank> getById(@PathVariable Long id) {
-		Optional<Bank> result = Optional.ofNullable(bankRepository.getBankById(id));
+		ResponseEntity<Bank> result = bankService.getId(id);
 		
-		if (result.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		return ResponseEntity.ok(bankRepository.getBankById(id));
+		return result;
+		
+	}
+	
+	@PostMapping(value = "/insert")
+	public void insert(@RequestBody Bank bank) {
+		bankService.insertBank(bank);
 	}
 	
 	

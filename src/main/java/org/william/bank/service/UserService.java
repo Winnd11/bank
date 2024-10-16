@@ -39,4 +39,8 @@ public class UserService {
 			return ResponseEntity.accepted().body(r.get());
 			}
 		}
+	
+	public void insertUser(User user) {
+		userRepository.save(user);
+	}
 }

@@ -41,4 +41,8 @@ public class BankService {
 			return ResponseEntity.accepted().body(r.get());
 		}
 	}
+	
+	public void insertBank(Bank bank) {
+		bankRepository.save(bank);
+	}
 }
