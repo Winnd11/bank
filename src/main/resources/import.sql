@@ -1,2 +1,2 @@
-INSERT INTO tb_users (name, email, balance) VALUES ('William', 'wi@gmail.com', 1200)
-INSERT INTO tb_users (name, email, balance) VALUES ('Zack', 'zack@gmail.com', 1300)
+INSERT INTO tb_users (name, last_name, email, balance) VALUES ('William', 'Rios', 'wi@gmail.com', 1200)
+INSERT INTO tb_users (name, last_name, email, balance) VALUES ('Zack', 'Hunter', 'zack@gmail.com', 1300)
