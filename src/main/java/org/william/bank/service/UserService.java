@@ -26,7 +26,7 @@ public class UserService {
 		if (r.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		} else {
-			return ResponseEntity.accepted().body(userRepository.getUserByName(names));
+			return ResponseEntity.accepted().body(r.get());
 		}
 	}
 	
