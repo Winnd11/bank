@@ -33,10 +33,10 @@ public class UserController {
 		
 	}
 	
-	@GetMapping(value = "/byname/{names}")
+	@GetMapping(value = "/byname/{name}")
 	@ResponseBody
-	public ResponseEntity<Object> getByName(@PathVariable String names) {
-		ResponseEntity<Object> result = userService.getName(names);
+	public ResponseEntity<Object> getByName(@PathVariable String name) {
+		ResponseEntity<Object> result = userService.getName(name);
 		
 		return result;
 	}

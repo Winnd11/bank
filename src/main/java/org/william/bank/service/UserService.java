@@ -25,11 +25,11 @@ public class UserService {
 		return userRepository.getAllUsers();
 	}
 	
-	public ResponseEntity<Object> getName(String names) {
-		Optional<User> r = Optional.ofNullable(userRepository.getUserByName(names));
+	public ResponseEntity<Object> getName(String name) {
+		Optional<User> r = Optional.ofNullable(userRepository.getUserByName(name));
 		
 		if (r.isEmpty()) {
-			return error.sendError(names + " " + status404.getName());
+			return error.sendError(name + " " + status404.getName());
 		} else {
 			return ResponseEntity.accepted().body(r.get());
 		}
@@ -57,6 +57,7 @@ public class UserService {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		} else {
 			if (Integer.signum(balanceSearch) > 0) {
+				userRepository.rankLow(id);
 				return ResponseEntity.accepted().body(r.get());
 			} else {
 				userRepository.rankLow(id);
