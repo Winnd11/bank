@@ -6,7 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -33,7 +35,11 @@ public class User {
 	@Email
 	String email;
 	
-	double balance;
+	int balance;
+	
+	@NotNull
+	@Max(value = 3)
+	int rank;
 	
 	public String getName() {
 		return name;
@@ -65,6 +71,14 @@ public class User {
 	
 	public void setBalance(int balance) {
 		this.balance = balance;
+	}
+	
+	public int getRank() {
+		return rank;
+	}
+	
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 		
 }
