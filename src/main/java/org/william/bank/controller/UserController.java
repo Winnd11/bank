@@ -35,8 +35,8 @@ public class UserController {
 	
 	@GetMapping(value = "/byname/{names}")
 	@ResponseBody
-	public ResponseEntity<User> getByName(@PathVariable String names) {
-		ResponseEntity<User> result = userService.getName(names);
+	public ResponseEntity<Object> getByName(@PathVariable String names) {
+		ResponseEntity<Object> result = userService.getName(names);
 		
 		return result;
 	}
@@ -52,5 +52,10 @@ public class UserController {
 	@PostMapping(value = "/insert")
 	public void insertUser(@RequestBody User user) {
 		userService.insertUser(user);
+	}
+	
+	@PostMapping(value = "/withdraw")
+	public void withdrawCurrency(@RequestBody int balance, Long id) {
+		userService.withdrawCurrency(balance, id);
 	}
 }
