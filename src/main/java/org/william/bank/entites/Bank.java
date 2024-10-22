@@ -1,5 +1,6 @@
 package org.william.bank.entites;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,17 +14,19 @@ import jakarta.validation.constraints.Size;
 public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	@Column(name = "bank_id")
+	Long bankId;
 	
 	@NotNull
 	@Size(min = 1, max = 20)
-	String agency;
+	@Column(name = "bank_name")
+	String bankName;
 	
 	public String getAgency() {
-		return agency;
+		return bankName;
 	}
 	
-	public void setAgency(String agency) {
-		this.agency = agency;
+	public void setAgency(String bankName) {
+		this.bankName = bankName;
 	}
 }

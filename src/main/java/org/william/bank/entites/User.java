@@ -20,11 +20,12 @@ import jakarta.persistence.ManyToOne;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	Long userId;
 	
 	@NotNull
 	@Size(min = 1, max = 20)
-	String name;
+	@Column(name = "user_name")
+	String userName;
 	
 	@NotNull
 	@Size(min = 1, max = 20)
@@ -33,14 +34,15 @@ public class User {
 	
 	@NotNull
 	@Email
-	String email;
+	@Column(name = "user_email")
+	String userEmail;
 	
 	public String getName() {
-		return name;
+		return userName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String userName) {
+		this.userName = userName;
 	}
 	
 	public String getLastName() {
@@ -52,10 +54,10 @@ public class User {
 	}
 	
 	public String getEmail() {
-		return email;
+		return userEmail;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}	
 }

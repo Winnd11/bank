@@ -16,15 +16,16 @@ import jakarta.validation.constraints.NotNull;
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long account_id;
+	Long accountId;
 	
 	@NotNull
-	int balance;
+	@Column(name = "account_balance")
+	int accountBalance;
 	
 	@NotNull
 	@Max(value = 3)
 	@Column(name = "account_rank")
-	int rank;
+	int accountRank;
 	
 	@NotNull
 	@Column(name = "account_type")
@@ -36,22 +37,22 @@ public class Account {
 	
 	@OneToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private User userId;
 	
 	public int getBalance() {
-		return balance;
+		return accountBalance;
 	}
 	
-	public void setBalance(int balance) {
-		this.balance = balance;
+	public void setBalance(int accountBalance) {
+		this.accountBalance = accountBalance;
 	}
 	
 	public int getRank() {
-		return rank;
+		return accountRank;
 	}
 	
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setRank(int accountRank) {
+		this.accountRank = accountRank;
 	}
 	
 	public String getAccountType() {
@@ -68,5 +69,13 @@ public class Account {
 	
 	public void setAccountStatus(boolean accountStatus) {
 		this.accountStatus = accountStatus;
+	}
+	
+	public User getUser() {
+		return userId;
+	}
+	
+	public void setUser(User userId) {
+		this.userId = userId;
 	}
 }
