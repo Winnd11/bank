@@ -35,12 +35,6 @@ public class User {
 	@Email
 	String email;
 	
-	int balance;
-	
-	@NotNull
-	@Max(value = 3)
-	int rank;
-	
 	public String getName() {
 		return name;
 	}
@@ -63,22 +57,5 @@ public class User {
 	
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	public double getBalance() {
-		return balance;
-	}
-	
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
-	
-	public int getRank() {
-		return rank;
-	}
-	
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-		
+	}	
 }
