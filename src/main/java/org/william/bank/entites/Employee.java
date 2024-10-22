@@ -17,11 +17,13 @@ import jakarta.validation.constraints.Email;
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	@Column(name = "employee_id")
+	Long employeeId;
 	
 	@NotNull
 	@Size(min = 1, max = 20)
-	String name;
+	@Column(name = "employee_name")
+	String employeeName;
 	
 	@NotNull
 	@Size(min = 1, max = 20)
@@ -30,18 +32,19 @@ public class Employee {
 	
 	@NotNull
 	@Email
-	String email;
+	@Column(name = "employee_email")
+	String employeeEmail;
 	
 	@ManyToOne
 	@JoinColumn(name = "bank_id")
 	private Bank bank;
 	
 	public String getName() {
-		return name;
+		return employeeName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 	
 	public String getLastName() {
@@ -53,11 +56,11 @@ public class Employee {
 	}
 	
 	public String getEmail() {
-		return email;
+		return employeeEmail;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String employeeEmail) {
+		this.employeeEmail = employeeEmail;
 	}
 	
 	public Bank getBank() {
