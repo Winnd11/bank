@@ -24,16 +24,15 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping(value = "/getusers")
+	@GetMapping(value = "")
 	@ResponseBody
 	public ResponseEntity<List<User>> getAll() {
 		List<User> user = userService.getAll();
 		
 		return ResponseEntity.ok(user);
-		
 	}
 	
-	@GetMapping(value = "/byname/{name}")
+	@GetMapping(value = "{name}")
 	@ResponseBody
 	public ResponseEntity<Object> getByName(@PathVariable String name) {
 		ResponseEntity<Object> result = userService.getName(name);
@@ -41,21 +40,28 @@ public class UserController {
 		return result;
 	}
 	
-	@GetMapping(value = "/byid/{id}")
+	@GetMapping(value = "/id/{id}")
 	@ResponseBody
-	public ResponseEntity<User> getById(@PathVariable Long id) {
-		ResponseEntity<User> result = userService.getId(id);
+	public ResponseEntity<Object> getById(@PathVariable Long id) {
+		ResponseEntity<Object> result = userService.getId(id);
 		
 		return result;
 	}
 	
-	@PostMapping(value = "/insert")
-	public void insertUser(@RequestBody User user) {
-		userService.insertUser(user);
+	@PostMapping(value = "")	
+	public ResponseEntity<Object> insertUser(@RequestBody User user) {
+		return userService.insertUser(user);
 	}
 	
 	@PostMapping(value = "/withdraw")
-	public void withdrawCurrency(@RequestBody int balance, Long id) {
-		userService.withdrawCurrency(balance, id);
+	@ResponseBody
+	public void withdrawCurrency(@RequestBody Long id, @RequestBody int balance) {
+		userService.withdrawCurrency(id, balance);
 	}
+	
+	//@PostMapping(value = "transfer")
+	//@ResponseBody
+	//public void transfer(@RequestBody Long id, @RequestBody int balance) {
+		//
+	//}
 }
