@@ -46,8 +46,7 @@ public class BankController {
 	public ResponseEntity<Bank> getById(@PathVariable Long id) {
 		ResponseEntity<Bank> result = bankService.getId(id);
 		
-		return result;
-		
+		return result;	
 	}
 	
 	@PostMapping(value = "/insert")

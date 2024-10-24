@@ -33,7 +33,7 @@ public class BankService {
 	}
 	
 	public ResponseEntity<Bank> getId(Long id) {
-		Optional<Bank> r = Optional.ofNullable(bankRepository.getById(id));
+		Optional<Bank> r = Optional.ofNullable(bankRepository.getBankById(id));
 		
 		if (r.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

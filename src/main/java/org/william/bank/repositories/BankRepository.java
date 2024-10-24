@@ -14,9 +14,9 @@ public interface BankRepository extends JpaRepository<Bank, Long>{
 	@Query(value = "SELECT * FROM tb_bank", nativeQuery = true)
 	List<Bank> getAllAgency();
 	
-	@Query(value = "SELECT * FROM tb_bank WHERE agency = :agency", nativeQuery = true)
+	@Query(value = "SELECT * FROM tb_bank WHERE bank_name = :agency", nativeQuery = true)
 	Bank getByName(@Param("agency") String agency);
 	
-	@Query(value = "SELECT * FROM tb_bank WHERE id = :id", nativeQuery = true)
+	@Query(value = "SELECT * FROM tb_bank WHERE bank_id = :id", nativeQuery = true)
 	Bank getBankById(@Param("id") Long id);
 }
