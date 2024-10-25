@@ -1,7 +1,9 @@
 package org.william.bank.entites;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,7 +37,7 @@ public class Account {
 	@Column(name = "account_status")
 	boolean accountStatus;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User userId;
 	
