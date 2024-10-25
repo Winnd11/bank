@@ -3,10 +3,13 @@ package org.william.bank.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.william.bank.entites.User;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -19,6 +22,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@Query(value = "SELECT * FROM tb_users WHERE user_id = :id", nativeQuery = true)
 	User getUserById(@Param("id") Long id);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM tb_account WHERE user_id = :id; DELETE FROM tb_users WHERE user_id = :id ", nativeQuery = true)
+	void deleteUserById(@Param("id") Long id);
 	
 	// VERIFY IF BALANCE ACCOUNT IS NEGATIVE
 	//@Query(value = "SELECT balance FROM tb_users WHERE user_id = :id", nativeQuery = true)

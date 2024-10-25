@@ -51,6 +51,24 @@ public class UserService {
 		return error.sendError(status200.getName());
 	}
 	
+	public void deleteUser(Long id) {
+		userRepository.deleteUserById(id);
+	}
+	
+	public ResponseEntity<Object> updateUser(Long id, User user) {
+		Optional<User> r = Optional.ofNullable(userRepository.getUserById(id));
+		
+		if (r.isEmpty()) {
+			return error.sendError("id " + id + status404.getName()); 
+		} 
+		User userUpdate = r.get();
+		userUpdate.setName(user.getName());
+		userUpdate.setLastName(user.getLastName());
+		userUpdate.setEmail(userUpdate.getEmail());
+		
+		return ResponseEntity.accepted().body(userRepository.save(userUpdate));
+	}
+	
 	//public ResponseEntity<Object> withdrawCurrency(Long id, int balance) {
 		//Optional<User> r = Optional.ofNullable(userRepository.withdrawCurrency(id, balance));
 		//Integer balanceSearch = userRepository.getBalanceById(id);
