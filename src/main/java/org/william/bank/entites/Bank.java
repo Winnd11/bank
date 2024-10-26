@@ -13,8 +13,8 @@ import jakarta.validation.constraints.Size;
 @Table(name = "tb_bank")
 public class Bank {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bank_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long bankId;
 	
 	@NotNull

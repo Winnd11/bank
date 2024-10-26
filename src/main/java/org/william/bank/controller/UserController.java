@@ -48,16 +48,19 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "")	
+	@ResponseBody
 	public ResponseEntity<Object> insertUser(@RequestBody User user) {
 		return userService.insertUser(user);
 	}
 	
 	@DeleteMapping(value = "/id/{id}")
+	@ResponseBody
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 	}
 	
 	@PatchMapping(value = "/id/{id}")
+	@ResponseBody
 	public ResponseEntity<Object> updateUser(@PathVariable Long id, @RequestBody User user) {
 		return userService.updateUser(id, user);
 	}

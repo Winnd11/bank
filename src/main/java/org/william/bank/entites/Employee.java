@@ -1,7 +1,9 @@
 package org.william.bank.entites;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,7 +37,7 @@ public class Employee {
 	@Column(name = "employee_email")
 	String employeeEmail;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "bank_id")
 	private Bank bank;
 	
