@@ -63,7 +63,6 @@ public class EmployeeService {
 		employeeUpdate.setName(employee.getName());
 		employeeUpdate.setLastName(employee.getLastName());
 		employeeUpdate.setEmail(employee.getEmail());
-		//employeeUpdate.setBank(employee.getBank());
 		
 		return ResponseEntity.accepted().body(employeeRepository.save(employeeUpdate));
 	}
